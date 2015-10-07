@@ -1,0 +1,193 @@
+<html>
+	<!--  -->
+	<head>
+		
+		
+		<!-- Meta -->
+		<title>Visual Fusion &middot; Akshat Srivastava</title>
+
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<meta name="keywords" content="Akshat, Srivastava, design, student, music, interaction, aficionado, MIS, MINET">	
+		<link rel="canonical" href="http://aksh.at/" />
+		<link rel="author" href="https://plus.google.com/+AkshatSrivastava9?rel=author"/>
+		
+		<meta property="og:url" content="http://aksh.at/contrast/" />
+		<meta property="og:title" content="Visual Fusion"/>
+		<meta property="og:site_name" content="Visual Fusion &middot; Akshat Srivastava"/>
+		<!-- <meta property="og:description" content="Akshat Srivastava makes things using keyboards of two sorts."> -->
+
+		<meta name="theme-color" content="#eee">
+		
+		<!-- Stylesheets -->
+		<link rel="stylesheet" type="text/css" href="assets/styles/css/style.css">
+		<link rel="stylesheet" type="text/css" href="//cloud.typography.com/6608932/614446/css/fonts.css">
+		<link rel="stylesheet" type="text/css" href="assets/bower_components/animate.css/animate.min.css">
+		<link rel="stylesheet" type="text/css" href="assets/bower_components/ionicons/css/ionicons.min.css">
+		<!-- <link rel="stylesheet" href="http://basehold.it/29/aaaaaa"> -->
+		<link rel="stylesheet" href="assets/bower_components/angularjs-color-picker/angularjs-color-picker.min.css" />
+
+		<!-- Icons -->
+		<link rel="apple-touch-icon" sizes="57x57" href="/assets/images/icons/apple-touch-icon-57x57.png">
+		<link rel="apple-touch-icon" sizes="114x114" href="/assets/images/icons/apple-touch-icon-114x114.png">
+		<link rel="apple-touch-icon" sizes="72x72" href="/assets/images/icons/apple-touch-icon-72x72.png">
+		<link rel="apple-touch-icon" sizes="144x144" href="/assets/images/icons/apple-touch-icon-144x144.png">
+		<link rel="apple-touch-icon" sizes="60x60" href="/assets/images/icons/apple-touch-icon-60x60.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="/assets/images/icons/apple-touch-icon-120x120.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="/assets/images/icons/apple-touch-icon-76x76.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="/assets/images/icons/apple-touch-icon-152x152.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/assets/images/icons/apple-touch-icon-180x180.png">
+		<meta name="apple-mobile-web-app-title" content="Akshat Srivastava">
+		<link rel="shortcut icon" href="/assets/images/icons/favicon.ico">
+		<link rel="icon" type="image/png" href="/assets/images/icons/favicon-192x192.png" sizes="192x192">
+		<link rel="icon" type="image/png" href="/assets/images/icons/favicon-160x160.png" sizes="160x160">
+		<link rel="icon" type="image/png" href="/assets/images/icons/favicon-96x96.png" sizes="96x96">
+		<link rel="icon" type="image/png" href="/assets/images/icons/favicon-16x16.png" sizes="16x16">
+		<link rel="icon" type="image/png" href="/assets/images/icons/favicon-32x32.png" sizes="32x32">
+		<meta name="msapplication-TileColor" content="#f7403a">
+		<meta name="msapplication-TileImage" content="/assets/images/icons/mstile-144x144.png">
+		<meta name="msapplication-config" content="/assets/images/icons/browserconfig.xml">
+		<meta name="application-name" content="Visual Fusion">
+
+	</head>
+
+	<body ng-app="contrastApp" class="contrastApp">
+			
+		<header>
+			<h1>Visual Fusion</h1>
+			<p class="only-on-small">Your screen size is too small to run this web app optimally.</p>
+		</header>
+
+		<section class="colors" ng-controller="ColorsController">
+
+			<div class="grid-container">
+			
+				<div class="section-title">
+					<div class="fifty">
+						<h2>Palette</h2>
+					</div>
+					<div class="fifty text-right">
+						<button ng-click="randomizeColors()" class="button"><i class="icon ion-shuffle"></i>Randomize</button>
+						<!-- <a href="#" ng-click="saveColors()" class="button"><i class="icon ion-star"></i>Save</a> -->
+					</div>
+				</div>
+
+				<div ng-repeat="color in colors" class="color color-{{ color.id }}">
+
+					<div class="fifty">
+						<h4 class="caption color-number">Color {{ color.id }}</h4>
+					</div>
+
+					<div class="fifty text-right">
+						<h4 class="caption color-number">
+							<button class="a" ng-click="" style="color: white"><i class="icon ion-arrow-return-left"></i>&nbsp;</button>
+							<button class="a" ng-click="color.randomize()"><i class="icon ion-shuffle"></i>&nbsp;</button>
+						</h4>
+					</div>
+
+					<div class="color-input-rgb">
+						<input type="text" ng-model="color.r" data-color="r">
+						<input type="text" ng-model="color.g" data-color="g">
+						<input type="text" ng-model="color.b" data-color="b">
+					</div>
+					
+					<div class="color-display" ng-style="{ 'background-color': 'rgb('+color.r+', '+color.g+', '+color.b+')' }"></div>
+					
+					<div class="one-of-three">
+						<h4 class="caption">H {{ color.h }}&deg;</h4>
+					</div>
+					<div class="one-of-three text-center">
+						<h4 class="caption">S {{ color.s }}%</h4>
+					</div>
+					<div class="one-of-three text-right">
+						<h4 class="caption">L {{ color.l }}%</h4>
+					</div>
+
+				</div>
+
+			</div>
+		
+		</section>
+
+		<section class="overall" ng-controller="DisplayController">
+
+			<div class="grid-container">
+			
+				<div class="section-title">
+					<div class="fifty">
+						<h2>Preview</h2>
+						<h4 class="caption whitespace">Whitespace <input type="range" min="0" max="200" ng-model="whitespace" step="20" /></h4>
+						<h4 class="caption blur">Blur-on-Hover Intensity <input type="range" min="0" max="4" ng-model="blur" step="0.01" /></h4>
+					</div>
+					<div class="fifty text-right loads">
+						<h4 class="caption p">Hover to see editable ordering and download options.</h4>
+						<h4 class="caption p">Increase the blur intensity to see the simulated overall hue of a study.</h4>
+						<h4 class="caption p">The downloaded file will be an Illustrator-compatible .svg.</h4>
+					</div>
+				</div>
+
+				<div class="clearfix"></div>
+				
+				<div class="colors-display" ng-repeat="row in rows track by $index" ng-style="{ 'margin-top': whitespace, 'margin-bottom': whitespace }">
+					<div class="color-row">
+						<div ng-attr-class="slivers sl-{{ $index }}" ng-style="blurStyle" ng-mouseenter="changeBlur(blur, $index, true)" ng-mouseleave="changeBlur(blur, $index, false)">
+							<div ng-attr-class="svg-row svg-{{$index}}">
+							<svg width="10in" height="2.5in">
+								<g>
+									<g ng-repeat="sliver in row.slivers track by $index">
+										<rect width="0.125in" height="2.5in" ng-x="$index*0.125 + 'in'" ng-style="{ 'fill': 'rgb('+sliver.r+', '+sliver.g+', '+sliver.b+')' }" />
+									</g>
+								</g>
+							</svg>
+							</div>
+						</div>
+						<div class="order">
+							<div class="order-input-container">
+								<input type="text" class="order" ng-model="row.order">
+							</div>
+							<div class="order-randomize-container">
+								<button ng-click="row.randomizeOrder()" class="a"><i class="icon ion-shuffle"></i>&nbsp;</button>
+							</div>
+							<div class="download-container">
+								<a href-lang='image/svg+xml' title='file.svg' ng-attr-class="download-{{ $index }} dnld button" ng-href="row.href" target='blank' download ng-attr-id="svg-{{$index}}"><i class="icon ion-ios-cloud-download"></i></a>
+							</div>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+				</div>
+			
+			</div>
+
+		</section>
+
+		<footer>
+			
+			<p class="copyright">Copyleft <span class="flip">&copy;</span> 2015 Akshat Srivastava</p>
+			<p class="made-in-india">Made with <i class="ion-heart vignelli"></i> in <span class="strike">India</span> Cincinnati.</p>
+		
+		</footer>
+
+		<script src="assets/bower_components/jquery/dist/jquery.min.js"></script>
+		<script src="assets/bower_components/angular/angular.min.js"></script>
+		<script src="assets/bower_components/tinycolor/dist/tinycolor-min.js"></script>
+		<script src="assets/bower_components/angularjs-color-picker/angularjs-color-picker.min.js"></script>
+
+		<script src="assets/scripts/min/scripts.min.js"></script>
+		<script src="assets/scripts/fusion.js"></script>
+
+		<script>
+
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+			ga('create', 'UA-58308106-1', 'auto');
+			ga('send', 'pageview');
+
+		</script>
+		
+	</body>
+
+</html>
